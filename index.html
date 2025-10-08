@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 6 Months Together ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 105, 180, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts */
+        body::before {
+            content: '💕';
+            position: fixed;
+            top: 10%;
+            left: 5%;
+            font-size: 3em;
+            opacity: 0.2;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '❤️';
+            position: fixed;
+            bottom: 10%;
+            right: 5%;
+            font-size: 3em;
+            opacity: 0.2;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .email-btn {
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 2.5em;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .email-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .secret-message {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease-in;
+            display: none;
+        }
+
+        .secret-message.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Jumpscare overlay */
+        .jumpscare-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: scareAppear 0.1s ease-in;
+        }
+
+        .jumpscare-overlay.show {
+            display: flex;
+        }
+
+        .jumpscare-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scareAppear {
+            0% { opacity: 0; transform: scale(1.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .book-page {
+            background: linear-gradient(to right, #ffffff 0%, #fff5f7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 
+                0 10px 40px rgba(233, 30, 99, 0.2),
+                inset 0 0 0 1px rgba(255, 182, 193, 0.3);
+            margin: 20px 0;
+            position: relative;
+            min-height: 400px;
+            animation: pageFlip 0.6s ease-in-out;
+        }
+
+        @keyframes pageFlip {
+            0% { opacity: 0; transform: rotateY(-20deg); }
+            100% { opacity: 1; transform: rotateY(0deg); }
+        }
+
+        .book-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(233, 30, 99, 0.2) 0%, 
+                rgba(255, 105, 180, 0.1) 50%, 
+                rgba(233, 30, 99, 0.2) 100%);
+            border-radius: 15px 0 0 15px;
+        }
+
+        .month-title {
+            color: #e91e63;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(255, 105, 180, 0.3);
+        }
+
+        .page-title {
+            color: #d81b60;
+            font-size: 1.5em;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-text {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 25px;
+            color: #ff69b4;
+            font-style: italic;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .image-placeholder {
+            background: rgba(255, 182, 193, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: #e91e63;
+            font-size: 1.2em;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            margin: 20px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .final-message {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        .final-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .book-page { padding: 20px; min-height: 350px; }
+            .month-title { font-size: 1.5em; }
+            .page-title { font-size: 1.2em; }
+            .page-text { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Jumpscare Overlay -->
+    <div class="jumpscare-overlay" id="jumpscareOverlay">
+        <img src="picture1.jpg" alt="BOO!" id="jumpscareImg" style="display:none;">
+        <h1 style="color: red; font-size: 5em;" id="jumpscareFallback">👻 BOO! 👻</h1>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>❤️ Our 6 Months Together ❤️</h1>
+            <p>A Love Story in 6 Chapters</p>
+        </div>
+
+        <!-- Email Button -->
+        <button class="email-btn" id="emailBtn">✉️</button>
+
+        <!-- Secret Message -->
+        <div class="secret-message" id="secretMessage">
+            💕 Happy 6 Months Bhe! 💕
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Months</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="daysCount">179</div>
+                <div class="stat-label">Days</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Memories</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Love</div>
+            </div>
+        </div>
+
+        <hr style="border: 1px solid rgba(255,255,255,0.3); margin: 30px 0;">
+
+        <!-- Book Content -->
+        <div id="bookContent"></div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="previousPage()">⬅️ Previous</button>
+            <div style="flex: 1;"></div>
+            <button class="nav-btn" id="nextBtn" onclick="nextPage()">Next ➡️</button>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress" id="progress">📖 Page 1 of 6</div>
+
+        <!-- Final Message -->
+        <div class="final-message" id="finalMessage">
+            💌 Happy 6 Month Anniversary, My Love! 💕<br>
+            <span style="font-size: 0.6em;">Here's to forever together...</span>
+        </div>
+    </div>
+
+    <script>
+        // Calculate days together
+        const startDate = new Date('2025-04-11');
+        const today = new Date();
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('daysCount').textContent = diffDays;
+
+        // Book pages data
+        const pages = [
+            {
+                month: "Chapter 1",
+                emoji: "✨",
+                title: "The Beginning",
+                message: "From the moment we met, I knew there was something special about you. Every conversation, every laugh, every moment felt like magic. You walked into my life and changed everything. It was like finding the missing piece I didn't know I was looking for.",
+                images: ["month1.jpg", "month1.1.jpg"]
+            },
+            {
+                month: "Chapter 2",
+                emoji: "🌸",
+                title: "Growing Closer",
+                message: "With each passing day, I discovered more reasons to fall for you. Your smile, your kindness, the way you make me laugh - everything about you just feels right. We started creating our own little world together, filled with inside jokes and sweet moments.",
+                images: ["month2.jpg"]
+            },
+            {
+                month: "Chapter 3",
+                emoji: "🎈",
+                title: "First Adventures",
+                message: "Remember all our adventures? Every moment with you is an adventure, whether we're exploring new places or just spending quiet time together. You make ordinary moments extraordinary. Each memory we create together becomes a treasure I hold close to my heart.",
+                images: ["month3.jpg", "month3.3.jpg"]
+            },
+            {
+                month: "Chapter 4",
+                emoji: "💕",
+                title: "Falling Deeper",
+                message: "By now, I was completely sure - you're the one I want by my side. The way we understand each other, support each other, and bring out the best in one another is something truly special. You've become my best friend, my confidant, my everything.",
+                images: ["month4.jpg"]
+            },
+            {
+                month: "Chapter 5",
+                emoji: "🌟",
+                title: "Dreams Together",
+                message: "We started dreaming about the future, making plans, and building something beautiful together. Every day with you feels like a step toward forever, and I can't wait to see where this journey takes us. Our dreams are intertwined now, and that makes them even more beautiful.",
+                images: ["month5.jpg"]
+            },
+            {
+                month: "Chapter 6",
+                emoji: "❤️",
+                title: "Here We Are",
+                message: "And here we are - six incredible months together. Thank you for every smile, every hug, every moment of joy. You've made these months the happiest of my life, and this is just the beginning of our story. I love you more with each passing day, and I can't wait for all the chapters yet to come.",
+                images: ["month6.jpg"]
+            }
+        ];
+
+        let currentPage = 0;
+        let jumpscareShown = false;
+
+        // Email button functionality
+        document.getElementById('emailBtn').addEventListener('click', function() {
+            if (!jumpscareShown) {
+                // Show jumpscare
+                showJumpscare();
+            } else {
+                // Toggle message
+                const msg = document.getElementById('secretMessage');
+                msg.classList.toggle('show');
+                if (msg.classList.contains('show')) {
+                    createBalloons();
+                }
+            }
+        });
+
+        function showJumpscare() {
+            const overlay = document.getElementById('jumpscareOverlay');
+            const img = document.getElementById('jumpscareImg');
+            const fallback = document.getElementById('jumpscareFallback');
+            
+            overlay.classList.add('show');
+            
+            // Try to load image
+            img.onerror = function() {
+                img.style.display = 'none';
+                fallback.style.display = 'block';
+            };
+            img.onload = function() {
+                img.style.display = 'block';
+                fallback.style.display = 'none';
+            };
+            img.src = 'picture1.jpg';
+            
+            jumpscareShown = true;
+            
+            // Hide after 3 seconds and show message
+            setTimeout(() => {
+                overlay.classList.remove('show');
+                document.getElementById('secretMessage').classList.add('show');
+                createBalloons();
+            }, 3000);
+        }
+
+        function createBalloons() {
+            for (let i = 0; i < 20; i++) {
+                const balloon = document.createElement('div');
+                balloon.textContent = ['🎈', '🎉', '💕', '❤️', '✨'][Math.floor(Math.random() * 5)];
+                balloon.style.position = 'fixed';
+                balloon.style.left = Math.random() * 100 + '%';
+                balloon.style.bottom = '-50px';
+                balloon.style.fontSize = '2em';
+                balloon.style.zIndex = '1000';
+                balloon.style.animation = `rise ${3 + Math.random() * 2}s ease-in`;
+                document.body.appendChild(balloon);
+                
+                setTimeout(() => balloon.remove(), 5000);
+            }
+        }
+
+        // Add rise animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rise {
+                to {
+                    bottom: 120%;
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Display current page
+        function displayPage() {
+            const page = pages[currentPage];
+            let imagesHTML = '<div class="image-container">';
+            
+            page.images.forEach(img => {
+                imagesHTML += `<img src="${img}" alt="Memory" onerror="this.parentElement.innerHTML='<div class=\\'image-placeholder\\'>📷 Add ${img} here</div>'">`;
+            });
+            
+            imagesHTML += '</div>';
+            
+            document.getElementById('bookContent').innerHTML = `
+                <div class="book-page">
+                    <div class="month-title">${page.emoji} ${page.month}</div>
+                    <div class="page-title">${page.title}</div>
+                    <div class="page-text">${page.message}</div>
+                    <div class="page-number">Page ${currentPage + 1} of 6</div>
+                </div>
+                ${imagesHTML}
+            `;
+            
+            // Update navigation
+            document.getElementById('prevBtn').disabled = currentPage === 0;
+            document.getElementById('nextBtn').disabled = currentPage === 5;
+            document.getElementById('progress').textContent = `📖 Page ${currentPage + 1} of 6`;
+            
+            // Show final message on last page
+            if (currentPage === 5) {
+                document.getElementById('finalMessage').classList.add('show');
+            } else {
+                document.getElementById('finalMessage').classList.remove('show');
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < 5) {
+                currentPage++;
+                displayPage();
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                displayPage();
+            }
+        }
+
+        // Initialize
+        displayPage();
+    </script>
+</body>
+</html>
